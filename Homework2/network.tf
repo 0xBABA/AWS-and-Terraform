@@ -29,7 +29,7 @@ resource "aws_subnet" "hw2_pub_sn" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "hw2_pub_sn"
+    Name = "hw2_pub_sn-${count.index}"
   }
 }
 

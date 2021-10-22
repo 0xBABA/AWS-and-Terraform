@@ -9,6 +9,28 @@ variable "owner_tag" {
   type        = string
 }
 
+variable "key_name" {
+  default     = "yoad_opsschool_ec2-rsa"
+  description = "The key name of the Key Pair to use for the instances"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "The type of the nginx EC2, for example - t2.medium"
+  type        = string
+  default     = "t2.micro"
+}
+
+variable "userdata_path" {
+  type    = string
+  default = "/home/ubuntu/AWS-and-Terraform/Homework2/userdata.sh"
+}
+
+variable "root_disk_size" {
+  description = "The size of the root disk"
+  default     = "10"
+}
+
 variable "private_subnet_cidrs" {
   description = "CIDR ranges for private subnets"
   default     = ["10.0.11.0/24", "10.0.12.0/24"]
