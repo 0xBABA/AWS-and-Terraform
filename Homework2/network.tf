@@ -64,7 +64,7 @@ resource "aws_subnet" "hw2_private_sn" {
   availability_zone = data.aws_availability_zones.available.names[count.index]
 
   tags = {
-    Name = "hw2_private_sn"
+    Name = "hw2_private_sn-${count.index}"
   }
 }
 
