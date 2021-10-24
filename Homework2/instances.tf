@@ -62,14 +62,13 @@ output "hw2_web_instance_public_ip" {
 ################################################
 ## creating the private db instances
 resource "aws_instance" "hw2_db_instance" {
-  count                       = 2
-  ami                         = data.aws_ami.ubuntu-18.id
-  instance_type               = var.instance_type
-  key_name                    = var.key_name
-  subnet_id                   = aws_subnet.hw2_private_sn.*.id[count.index]
-  associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.hw2_db_sg.id]
-  user_data                   = file(var.userdata_path)
+  count                  = 2
+  ami                    = data.aws_ami.ubuntu-18.id
+  instance_type          = var.instance_type
+  key_name               = var.key_name
+  subnet_id              = aws_subnet.hw2_private_sn.*.id[count.index]
+  vpc_security_group_ids = [aws_security_group.hw2_db_sg.id]
+  user_data              = file(var.userdata_path)
 
   root_block_device {
     encrypted   = false
