@@ -30,3 +30,5 @@ override.tf.json
 */*tfplan
 
 */.terraform.lock.hcl
+Homework3/environments/dev/vpc/.terraform.lock.hcl
+Homework3/environments/dev/vpc/vpc.tfplan
