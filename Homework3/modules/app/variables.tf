@@ -18,8 +18,8 @@ variable "key_name" {
 }
 
 variable "subnet_id" {
-  type    = list(string)
-  default = []
+  type    = string
+  default = ""
 }
 
 variable "userdata_path" {
@@ -46,11 +46,12 @@ variable "encrypted_disk_device_name" {
   default = "xvdh"
 }
 
-variable "instance_prefix" {
+variable "instance_name" {
   type    = string
   default = "web"
 }
 
-variable "vpc_id" {
-  type = string
+variable "security_group_id" {
+  type    = string
+  default = ""
 }

@@ -1,14 +1,13 @@
-#TODO: make this work. it's not working yet...
 ################################################
 # Private "DB" Instances
 ################################################
 ## creating the private db instances
 resource "aws_instance" "db_instance" {
   count                       = var.db_instances_count
-  ami                         = var.ami_id
+  ami                         = data.aws_ami.ubuntu-18.id
   instance_type               = var.ec2_instance_type
   key_name                    = var.key_name
-  subnet_id                   = var.subnet_id
+  subnet_id                   = data.aws_subnets.get_subnets_info.ids[count.index]
   associate_public_ip_address = false
   vpc_security_group_ids      = [aws_security_group.db_sg.id]
 
@@ -27,7 +26,7 @@ resource "aws_instance" "db_instance" {
 resource "aws_security_group" "db_sg" {
   name        = "db-sg"
   description = "Allow ports for db intances"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_vpc.get_vpc_info.id
 }
 
 resource "aws_security_group_rule" "db_ssh_acess" {

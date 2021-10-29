@@ -23,10 +23,10 @@ resource "aws_lb_target_group" "hw3_web_alb_tg" {
 resource "aws_lb_target_group_attachment" "hw3_web_alb_tg_a" {
   count            = 2
   target_group_arn = aws_lb_target_group.hw3_web_alb_tg.arn
-  target_id        = module.web-instance.*.instance_ids
+  target_id        = module.web_instance[count.index].instance_id
   port             = 80
   depends_on = [
-    module.web-instance
+    module.web_instance
   ]
 }
 
@@ -51,12 +51,16 @@ resource "aws_lb" "hw3_web_alb" {
   name               = format("%s-web-alb", var.global_name_prefix)
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [module.web-instance.instance_security_group.*.id]
-  subnets            = [data.aws_subnet.get_subnet_info_0.id, data.aws_subnet.get_subnet_info_1.id]
+  security_groups    = [aws_security_group.web_sg.id]
+  subnets            = data.aws_subnets.get_subnets_info.ids
 
   tags = {
     Name = format("%s-web_alb", var.global_name_prefix)
   }
+
+  depends_on = [
+    module.web_instance
+  ]
 }
 
 output "hw3_alb_public_dns" {
