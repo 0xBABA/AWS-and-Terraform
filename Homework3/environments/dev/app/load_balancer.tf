@@ -14,6 +14,12 @@ resource "aws_lb_target_group" "hw3_web_alb_tg" {
     path    = "/"
   }
 
+  stickiness {
+    type            = "lb_cookie"
+    cookie_duration = 60
+    enabled         = true
+  }
+
   tags = {
     Name = format("%s-web-alb-tg", var.global_name_prefix)
   }

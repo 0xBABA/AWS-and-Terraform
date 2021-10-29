@@ -6,6 +6,11 @@ terraform {
       version = "~> 3.63"
     }
   }
+  backend "s3" {
+    bucket = "yoad-opsschool-aws-tf-hw3-state"
+    key    = "vpc/vpc.tfstate"
+    region = "us-east-1"
+  }
 }
 
 ##################################################################################
