@@ -18,8 +18,8 @@ variable "key_name" {
 }
 
 variable "subnet_id" {
-  type    = string
-  default = ""
+  type    = list(string)
+  default = []
 }
 
 variable "userdata_path" {
@@ -41,7 +41,7 @@ variable "encrypted_disk_size" {
   default = 10
 }
 
-variable "nginx_encrypted_disk_device_name" {
+variable "encrypted_disk_device_name" {
   type    = string
   default = "xvdh"
 }

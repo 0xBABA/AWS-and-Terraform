@@ -3,12 +3,12 @@
 ################################################
 resource "aws_instance" "web_instance" {
   count                       = var.web_instances_count
-  ami                         = var.ami
-  instance_type               = var.instance_type
+  ami                         = var.ami_id
+  instance_type               = var.ec2_instance_type
   key_name                    = var.key_name
-  subnet_id                   = var.subnet_id
+  subnet_id                   = var.subnet_id[count.index]
   associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.nginx_sg.id]
+  vpc_security_group_ids      = [aws_security_group.web_sg.id]
   user_data                   = file(var.userdata_path)
 
   root_block_device {
@@ -19,13 +19,13 @@ resource "aws_instance" "web_instance" {
 
   ebs_block_device {
     encrypted   = true
-    device_name = var.nginx_encrypted_disk_device_name
+    device_name = var.encrypted_disk_device_name
     volume_type = var.volumes_type
-    volume_size = var.nginx_encrypted_disk_size
+    volume_size = var.encrypted_disk_size
   }
 
   tags = {
-    Name = format("%s-${count.index + 1}", var.instance_prefix)
+    Name = format("%s-${count.index}", var.instance_prefix)
   }
 }
 
