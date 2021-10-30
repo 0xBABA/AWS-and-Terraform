@@ -55,3 +55,9 @@ variable "security_group_id" {
   type    = string
   default = ""
 }
+
+variable "instance_profile_name" {
+  type    = string
+  default = ""
+}
+

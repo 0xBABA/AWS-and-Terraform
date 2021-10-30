@@ -51,3 +51,7 @@ variable "global_name_prefix" {
 variable "public_subnet_prefix" {
   default = "public_sn"
 }
+
+variable "s3_logs_bucket" {
+  default = "yoad-opsschool-aws-tf-hw3-access-logs"
+}

@@ -8,13 +8,14 @@ module "web_instance" {
   # subnet_id           = data.aws_subnet.get_subnet_info
   # subnet_id           = data.aws_subnet.get_subnet_info.*.id
   # subnet_id           = data.tf_vpc_state.public_subnets.outputs.public_subnet_id
-  subnet_id           = data.aws_subnets.get_subnets_info.ids[count.index]
-  userdata_path       = var.userdata_path
-  volumes_type        = var.volume_type
-  root_disk_size      = var.root_disk_size
-  encrypted_disk_size = var.encrypted_disk_size
-  instance_name       = format("nginx-%s", count.index)
-  security_group_id   = aws_security_group.web_sg.id
+  subnet_id             = data.aws_subnets.get_subnets_info.ids[count.index]
+  userdata_path         = var.userdata_path
+  volumes_type          = var.volume_type
+  root_disk_size        = var.root_disk_size
+  encrypted_disk_size   = var.encrypted_disk_size
+  instance_name         = format("nginx-%s", count.index)
+  security_group_id     = aws_security_group.web_sg.id
+  instance_profile_name = aws_iam_instance_profile.ec2_web_profile.name
 }
 
 
