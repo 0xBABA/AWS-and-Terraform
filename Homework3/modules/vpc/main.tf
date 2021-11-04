@@ -85,7 +85,7 @@ resource "aws_eip" "nat_eip" {
 resource "aws_nat_gateway" "nat_gw" {
   count         = length(var.public_subnet_cidrs)
   allocation_id = aws_eip.nat_eip.*.id[count.index]
-  subnet_id     = aws_subnet.public_sn.*.id[0]
+  subnet_id     = aws_subnet.public_sn.*.id[count.index]
 
   tags = {
     Name = format("%s-nat_gw", var.global_name_prefix)
