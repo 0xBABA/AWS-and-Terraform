@@ -34,3 +34,4 @@ Homework3/environments/dev/vpc/.terraform.lock.hcl
 Homework3/environments/dev/db/.terraform.lock.hcl
 */*/*/*/*.tfplan
 
+Homework4/terraform.tfvars
