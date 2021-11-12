@@ -4,5 +4,6 @@ variable "email" {
 }
 
 variable "tfe_token" {
-  type = string
+  default = ""
+  type    = string
 }
