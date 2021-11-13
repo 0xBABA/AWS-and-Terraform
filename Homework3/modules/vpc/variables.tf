@@ -44,7 +44,7 @@ variable "public_route_table_name" {
 
 variable "private_route_table_name" {
   type    = string
-  default = "public_rt"
+  default = "private_rt"
 }
 
 

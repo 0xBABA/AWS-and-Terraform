@@ -88,7 +88,7 @@ resource "aws_nat_gateway" "nat_gw" {
   subnet_id     = aws_subnet.public_sn.*.id[count.index]
 
   tags = {
-    Name = format("%s-nat_gw", var.global_name_prefix)
+    Name = format("%s-nat_gw-${count.index}", var.global_name_prefix)
   }
 
   # To ensure proper ordering, it is recommended to add an explicit dependency
