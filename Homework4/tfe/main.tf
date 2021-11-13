@@ -7,8 +7,9 @@ resource "tfe_workspace" "opsschool-tfe" {
   name                = "tfe-configuration"
   organization        = tfe_organization.tfe-org.name
   global_remote_state = true
+  auto_apply          = true
   working_directory   = "/Homework4/tfe"
-  tag_names           = ["opsschool", "tfe", "refresh"]
+  tag_names           = ["opsschool", "workspaces"]
 }
 
 resource "tfe_workspace" "opsschool-app" {
