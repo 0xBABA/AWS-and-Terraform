@@ -5,15 +5,15 @@ terraform {
     }
   }
 
-  backend "remote" {
-    hostname     = "app.terraform.io"
-    organization = "yoad-tfe-org"
-    workspaces {
-      name = "tfe-configuration"
-    }
-  }
+  # backend "remote" {
+  #   hostname     = "app.terraform.io"
+  #   organization = "yoad-tfc-org"
+  #   workspaces {
+  #     name = "tfe-configuration"
+  #   }
+  # }
 }
 
-# provider "tfe" {
-#   token = var.tfe_token
-# }
+provider "tfe" {
+  token = var.tfe_token
+}

@@ -1,37 +1,20 @@
-resource "tfe_organization" "tfe-org" {
-  name  = "yoad-tfe-org"
-  email = var.email
+data "tfe_organization" "tfe_org" {
+  name = var.tfc_organization_name
 }
-
-resource "tfe_workspace" "opsschool-tfe" {
-  name                = "tfe-configuration"
-  organization        = tfe_organization.tfe-org.name
-  global_remote_state = true
-  auto_apply          = true
-  working_directory   = "/Homework4/tfe"
-  tag_names           = ["opsschool", "workspaces"]
+resource "tfe_workspace" "workspaces" {
+  for_each            = var.workspaces
+  name                = each.key
+  organization        = data.tfe_organization.tfe_org.name
+  auto_apply          = each.value.auto_apply
+  global_remote_state = each.value.global_remote_state
+  allow_destroy_plan  = each.value.allow_destroy_plan
+  trigger_prefixes    = each.value.trigger_prefixes
+  working_directory   = each.value.working_directory
+  execution_mode      = each.value.execution_mode
+  tag_names           = concat(var.tvc_workspace_global_tags, each.value.tags)
+  vcs_repo {
+    identifier     = var.vcs_repo_identifier
+    branch         = var.vcs_repo_branch
+    oauth_token_id = var.github_token_id
+  }
 }
-
-resource "tfe_workspace" "opsschool-app" {
-  name                = "dev-app"
-  organization        = tfe_organization.tfe-org.name
-  global_remote_state = true
-  tag_names           = ["opsschool", "app"]
-}
-
-resource "tfe_workspace" "opsschool-db" {
-  name                = "dev-db"
-  organization        = tfe_organization.tfe-org.name
-  global_remote_state = true
-  tag_names           = ["opsschool", "db"]
-}
-
-resource "tfe_workspace" "opsschool-network" {
-  name                = "dev-network"
-  organization        = tfe_organization.tfe-org.name
-  global_remote_state = true
-  working_directory   = "/Homework3/vpc/"
-  tag_names           = ["opsschool", "network"]
-}
-
-

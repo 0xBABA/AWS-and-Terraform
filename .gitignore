@@ -35,7 +35,7 @@ Homework3/environments/dev/db/.terraform.lock.hcl
 */*/*/*/*.tfplan
 
 Homework4/terraform.tfvars
-Homework4/tfe/terraform.auto.tfvars
 Homework4/tfe/.terraform.lock.hcl
 Homework4/tfe/providers.tf
 Homework4/tfe/tfe.tfplan
+Homework4/tfe/secrets.auto.tfvars

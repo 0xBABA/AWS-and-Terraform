@@ -4,6 +4,42 @@ variable "email" {
 }
 
 variable "tfe_token" {
-  default = ""
+  type = string
+}
+
+variable "github_token_id" {
+  type = string
+}
+
+variable "vcs_repo_identifier" {
+  default = "0xBABA/AWS-and-Terraform"
   type    = string
 }
+
+variable "vcs_repo_branch" {
+  default = "hw4"
+  type    = string
+}
+
+variable "tfc_organization_name" {
+  default = "yoad-tfc-org"
+  type    = string
+}
+
+variable "tvc_workspace_global_tags" {
+  default = ["opsschool"]
+  type    = list(any)
+}
+
+variable "workspaces" {
+  type = map(object({
+    auto_apply          = bool
+    global_remote_state = bool
+    allow_destroy_plan  = bool
+    trigger_prefixes    = list(string)
+    working_directory   = string
+    execution_mode      = string
+    tags                = list(string)
+  }))
+}
+
