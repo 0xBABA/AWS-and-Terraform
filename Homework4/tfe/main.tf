@@ -4,7 +4,7 @@ data "tfe_organization" "tfe_org" {
 resource "tfe_workspace" "workspaces" {
   for_each            = var.workspaces
   name                = each.key
-  organization        = data.tfe_organization.tfe_org.name
+  organization        = var.tfc_organization_name
   auto_apply          = each.value.auto_apply
   global_remote_state = each.value.global_remote_state
   allow_destroy_plan  = each.value.allow_destroy_plan
