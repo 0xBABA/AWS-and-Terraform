@@ -21,6 +21,10 @@ variable "vcs_repo_branch" {
   type    = string
 }
 
+variable "vpc_module_repo_identifier" {
+  default = "0xBABA/terraform-aws-vpc"
+}
+
 variable "tfc_organization_name" {
   default = "yoad-tfc-org"
   type    = string
