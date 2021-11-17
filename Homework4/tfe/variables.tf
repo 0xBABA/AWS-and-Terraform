@@ -46,4 +46,15 @@ variable "workspaces" {
     tags                = list(string)
   }))
 }
+variable "aws_access_key" {
+  type = string
+}
 
+variable "aws_secret_access_key" {
+  type = string
+}
+
+variable "aws_vpc_allaccess_policy" {
+  type    = string
+  default = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+}

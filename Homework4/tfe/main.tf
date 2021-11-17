@@ -1,6 +1,13 @@
 data "tfe_organization" "tfe_org" {
   name = var.tfc_organization_name
 }
+
+#TODO: The workspace with env vars creation should be exported to a module. 
+# the module should also accept aws secrets from another module (probably)
+# that will create an iam user with programmatic access and output the secrets for the created user. 
+# the user module should accept a relevant json policy for the required permissions.  
+
+## create workspaces
 resource "tfe_workspace" "workspaces" {
   for_each            = var.workspaces
   name                = each.key
@@ -18,6 +25,34 @@ resource "tfe_workspace" "workspaces" {
     oauth_token_id = var.github_token_id
   }
 }
+
+## create env vars
+#TODO: this should be a part of the workspace module
+resource "tfe_variable" "region_env_var" {
+  key          = "AWS_DEFAULT_REGION"
+  value        = "us-east-1"
+  description  = "aws default region"
+  category     = "env"
+  sensitive    = false
+  workspace_id = tfe_workspace.workspaces["network"].id
+}
+resource "tfe_variable" "aws_secret_key_env_var" {
+  key          = "AWS_SECRET_ACCESS_KEY "
+  value        = aws_iam_access_key.network.secret
+  description  = "aws secret key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["network"].id
+}
+resource "tfe_variable" "aws_key_env_var" {
+  key          = "AWS_ACCESS_KEY_ID"
+  value        = aws_iam_access_key.network.id
+  description  = "aws access key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["network"].id
+}
+
 
 ## create registry for vpc module
 resource "tfe_registry_module" "vpc-registry-module" {

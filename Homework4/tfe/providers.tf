@@ -3,6 +3,10 @@ terraform {
     tfe = {
       version = "~> 0.26.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.65.0"
+    }
   }
 
   # backend "remote" {
@@ -16,4 +20,8 @@ terraform {
 
 provider "tfe" {
   token = var.tfe_token
+}
+
+provider "aws" {
+  region = "us-east-1"
 }

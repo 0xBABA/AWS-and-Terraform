@@ -7,5 +7,7 @@ workspaces = {
     working_directory   = "/Homework3/environments/dev/vpc/"
     execution_mode      = "remote"
     tags                = ["network"]
+
   }
 }
+
