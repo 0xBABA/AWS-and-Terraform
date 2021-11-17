@@ -54,7 +54,19 @@ variable "network_aws_secret_access_key" {
   type = string
 }
 
+variable "servers_aws_access_key" {
+  type = string
+}
+
+variable "servers_aws_secret_access_key" {
+  type = string
+}
 variable "aws_vpc_allaccess_policy" {
   type    = string
   default = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
+}
+
+variable "slack_notification_url" {
+  type    = string
+  default = "***REMOVED***"
 }

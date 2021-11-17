@@ -28,7 +28,8 @@ resource "tfe_workspace" "workspaces" {
 
 ## create env vars
 #TODO: this should be a part of the workspace module
-resource "tfe_variable" "region_env_var" {
+# network vars
+resource "tfe_variable" "network_region_env_var" {
   key          = "AWS_DEFAULT_REGION"
   value        = "us-east-1"
   description  = "aws default region"
@@ -36,7 +37,7 @@ resource "tfe_variable" "region_env_var" {
   sensitive    = false
   workspace_id = tfe_workspace.workspaces["network"].id
 }
-resource "tfe_variable" "aws_secret_key_env_var" {
+resource "tfe_variable" "network_aws_secret_key_env_var" {
   key          = "AWS_SECRET_ACCESS_KEY "
   value        = var.network_aws_secret_access_key
   description  = "aws secret key"
@@ -44,13 +45,63 @@ resource "tfe_variable" "aws_secret_key_env_var" {
   sensitive    = true
   workspace_id = tfe_workspace.workspaces["network"].id
 }
-resource "tfe_variable" "aws_key_env_var" {
+resource "tfe_variable" "network_aws_key_env_var" {
   key          = "AWS_ACCESS_KEY_ID"
   value        = var.network_aws_access_key
   description  = "aws access key"
   category     = "env"
   sensitive    = true
   workspace_id = tfe_workspace.workspaces["network"].id
+}
+# servers vars
+resource "tfe_variable" "servers_region_env_var" {
+  key          = "AWS_DEFAULT_REGION"
+  value        = "us-east-1"
+  description  = "aws default region"
+  category     = "env"
+  sensitive    = false
+  workspace_id = tfe_workspace.workspaces["servers"].id
+}
+resource "tfe_variable" "servers_aws_secret_key_env_var" {
+  key          = "AWS_SECRET_ACCESS_KEY "
+  value        = var.servers_aws_secret_access_key
+  description  = "aws secret key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["servers"].id
+}
+resource "tfe_variable" "servers_aws_key_env_var" {
+  key          = "AWS_ACCESS_KEY_ID"
+  value        = var.servers_aws_access_key
+  description  = "aws access key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["servers"].id
+}
+# dbs vars
+resource "tfe_variable" "dbs_region_env_var" {
+  key          = "AWS_DEFAULT_REGION"
+  value        = "us-east-1"
+  description  = "aws default region"
+  category     = "env"
+  sensitive    = false
+  workspace_id = tfe_workspace.workspaces["dbs"].id
+}
+resource "tfe_variable" "dbs_aws_secret_key_env_var" {
+  key          = "AWS_SECRET_ACCESS_KEY "
+  value        = var.servers_aws_secret_access_key
+  description  = "aws secret key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["dbs"].id
+}
+resource "tfe_variable" "dbs_aws_key_env_var" {
+  key          = "AWS_ACCESS_KEY_ID"
+  value        = var.servers_aws_access_key
+  description  = "aws access key"
+  category     = "env"
+  sensitive    = true
+  workspace_id = tfe_workspace.workspaces["dbs"].id
 }
 
 
