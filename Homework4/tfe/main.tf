@@ -38,7 +38,7 @@ resource "tfe_variable" "region_env_var" {
 }
 resource "tfe_variable" "aws_secret_key_env_var" {
   key          = "AWS_SECRET_ACCESS_KEY "
-  value        = aws_iam_access_key.network.secret
+  value        = var.network_aws_secret_access_key
   description  = "aws secret key"
   category     = "env"
   sensitive    = true
@@ -46,7 +46,7 @@ resource "tfe_variable" "aws_secret_key_env_var" {
 }
 resource "tfe_variable" "aws_key_env_var" {
   key          = "AWS_ACCESS_KEY_ID"
-  value        = aws_iam_access_key.network.id
+  value        = var.network_aws_access_key
   description  = "aws access key"
   category     = "env"
   sensitive    = true
