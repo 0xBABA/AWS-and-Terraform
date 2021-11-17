@@ -12,9 +12,9 @@ terraform {
 
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "yoad-terrafom-cloud"
+    organization = "yoad-tfc-org"
     workspaces {
-      name = "dev-network"
+      name = "network"
     }
   }
 }
