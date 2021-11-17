@@ -40,3 +40,4 @@ Homework4/tfe/providers.tf
 Homework4/tfe/tfe.tfplan
 Homework4/tfe/secrets.auto.tfvars
 Homework4/tfe/tfe.plan
+Homework3/environments/dev/app/.terraform.lock.hcl
