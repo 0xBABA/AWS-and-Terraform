@@ -22,7 +22,7 @@ variable "instance_type" {
 
 variable "userdata_path" {
   type    = string
-  default = "/home/ubuntu/AWS-and-Terraform/Homework3/environments/dev/app/userdata.sh"
+  default = "./userdata.sh"
 }
 
 variable "root_disk_size" {
