@@ -1,15 +1,17 @@
 terraform {
-  required_version = "1.0.9"
+  required_version = "~> 1.0.9"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 3.63"
     }
   }
-  backend "s3" {
-    bucket = "yoad-opsschool-aws-tf-hw3-state"
-    key    = "db/db.tfstate"
-    region = "us-east-1"
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "yoad-tfc-org"
+    workspaces {
+      name = "db"
+    }
   }
 }
 
