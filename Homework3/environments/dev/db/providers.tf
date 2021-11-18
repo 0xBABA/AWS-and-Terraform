@@ -10,7 +10,7 @@ terraform {
     hostname     = "app.terraform.io"
     organization = "yoad-tfc-org"
     workspaces {
-      name = "db"
+      name = "dbs"
     }
   }
 }
