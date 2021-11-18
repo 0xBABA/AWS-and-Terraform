@@ -13,7 +13,7 @@ variable "vpc_name" {
 }
 
 variable "global_name_prefix" {
-  default = "hw3"
+  default = "hw4"
 }
 
 variable "db_instances_count" {
