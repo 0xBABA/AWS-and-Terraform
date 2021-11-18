@@ -5,7 +5,9 @@ data "tfe_organization" "tfe_org" {
 #TODO: The workspace with env vars creation should be exported to a module. 
 # the module should also accept aws secrets from another module (probably)
 # that will create an iam user with programmatic access and output the secrets for the created user. 
-# the user module should accept a relevant json policy for the required permissions.  
+# the user module should accept a relevant json policy for the required permissions.
+# this will also allow to programmatically share state with the dbs and servers workspaces which i cannot 
+# do with the current way this configuration is built.  
 
 ## create workspaces
 resource "tfe_workspace" "workspaces" {
