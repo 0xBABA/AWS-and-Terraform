@@ -67,6 +67,5 @@ variable "aws_vpc_allaccess_policy" {
 }
 
 variable "slack_notification_url" {
-  type    = string
-  default = "***REMOVED***"
+  type = string
 }
