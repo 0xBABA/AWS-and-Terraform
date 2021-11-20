@@ -1,7 +1,3 @@
-variable "email" {
-  default = "yoadlanger@gmail.com"
-  type    = string
-}
 
 variable "tfe_token" {
   type = string
@@ -30,22 +26,12 @@ variable "tfc_organization_name" {
   type    = string
 }
 
-variable "tvc_workspace_global_tags" {
+variable "tfc_workspace_global_tags" {
   default = ["opsschool"]
   type    = list(any)
 }
 
-variable "workspaces" {
-  type = map(object({
-    auto_apply          = bool
-    global_remote_state = bool
-    allow_destroy_plan  = bool
-    trigger_prefixes    = list(string)
-    working_directory   = string
-    execution_mode      = string
-    tags                = list(string)
-  }))
-}
+
 variable "network_aws_access_key" {
   type = string
 }
@@ -61,10 +47,7 @@ variable "servers_aws_access_key" {
 variable "servers_aws_secret_access_key" {
   type = string
 }
-variable "aws_vpc_allaccess_policy" {
-  type    = string
-  default = "arn:aws:iam::aws:policy/AmazonVPCFullAccess"
-}
+
 
 variable "slack_notification_url" {
   type = string
