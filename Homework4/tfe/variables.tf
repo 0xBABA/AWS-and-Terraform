@@ -13,7 +13,7 @@ variable "vcs_repo_identifier" {
 }
 
 variable "vcs_repo_branch" {
-  default = "hw4"
+  default = "hw4-cleaner"
   type    = string
 }
 
