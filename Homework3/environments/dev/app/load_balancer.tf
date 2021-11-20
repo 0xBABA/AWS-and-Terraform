@@ -58,7 +58,7 @@ resource "aws_lb" "hw3_web_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web_sg.id]
-  subnets            = data.terraform_remote_state.vpc.outputs.public_subnet_id
+  subnets            = data.terraform_remote_state.vpc.outputs.public_subnet_ids
 
   tags = {
     Name = format("%s-web_alb", var.global_name_prefix)
