@@ -7,7 +7,7 @@ resource "aws_lb_target_group" "hw3_web_alb_tg" {
   name     = format("%s-web-alb-tg", var.global_name_prefix)
   port     = 80
   protocol = "HTTP"
-  vpc_id   = data.aws_vpc.get_vpc_info.id
+  vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id
 
   health_check {
     enabled = true

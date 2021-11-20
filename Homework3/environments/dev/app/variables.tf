@@ -55,3 +55,8 @@ variable "public_subnet_prefix" {
 variable "s3_logs_bucket" {
   default = "yoad-opsschool-aws-tf-hw3-access-logs"
 }
+
+variable "tfc_org" {
+  default = "yoad-tfc-org"
+  type    = string
+}
