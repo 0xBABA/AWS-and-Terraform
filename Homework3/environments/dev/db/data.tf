@@ -8,6 +8,17 @@ data "aws_ami" "ubuntu-18" {
   }
 }
 
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+  config = {
+    organization = var.tfc_org
+    workspaces = {
+      name = "network"
+    }
+  }
+}
+
+
 data "aws_subnets" "get_subnets_info" {
   filter {
     name   = "tag:Name"

@@ -51,3 +51,8 @@ variable "instance_prefix" {
   type    = string
   default = "db"
 }
+
+variable "tfc_org" {
+  default = "yoad-tfc-org"
+  type    = string
+}
