@@ -14,10 +14,10 @@ The AWS resources are managed from the `Homework3/` directory.
 </br> -> Organization was created manualy in TFC UI since i had issues reapplying the plan when it was included in the configuration. I am not sure why, but i think it was token related.
 
 ✅ Create a workspace in terraform cloud 
-</br> -> `tfe/main.tf` creates 3 workspaces (network, servers, dbs). To have a more concise code I used a map to specify the details per each workspace to be created (`workspace.auto.tfvars`). this proved to be a wrong approach as it makes accessing the workspace data harder and basically made me skip specific state sharing. to mitigate this i should probably create separate files per workspace or use a module to create the workspaces.
+</br> -> created 3 workspaces (network, servers, dbs). 
 
 ✅ Define the variables in your workspace
-</br> -> I tried (very hard) to refrain from coding AWS secrets in this sulution - but didn't succeed (see secrets.auto.tfvars.example). I tried creting IAM users per workspace and the plan was to grab their access keys programmatically - but once that worked (and it did), consecutive applies failed. This might have been better done with a module. Gai found a resource online claiming to use assumeRole for the workspaces - but I couldn't understand how that's done. slack channel also didn't prove very helpful with this. 
+</br> -> I tried (very hard) to refrain from coding AWS secrets in this sulution - but didn't succeed (see secrets.auto.tfvars.example). I tried creating IAM users per workspace and the plan was to grab their access keys programmatically - but once that worked (and it did), consecutive applies failed. This might have been better done with a module. Gai found a resource online claiming to use assumeRole for the workspaces - but I couldn't understand how that's done. slack channel also didn't prove very helpful with this. 
 
 ✅ Migrate your state to terraform cloud
 </br> -> done. no issues there.
@@ -26,10 +26,10 @@ The AWS resources are managed from the `Homework3/` directory.
 </br> -> done.
 
 ✅ Use modules from private terraform registry instead of local folders/git
-</br> -> due to time limitations i only exported the vpc module to a seperate repo and the private registry. i can (and should) do the same for the instances module, the reason I skipped this is because i am having second thought from the last HW about this module. so i decided to skip that for now. 
+</br> -> Due to time limitations i only exported the vpc module to a seperate repo and the private registry. I can (and should) do the same for the instances module, the reason I skipped this is because i am having second thought from the last HW about this module. so i decided to skip that for now. 
 
 ✅ Use noticiations to send alerts and updates to slack (use channel #_notifications)
-</br> -> done (`tfe/workspace-notifications.tf`). however, at a certain point my notification started to get 403 errors back from slack due to invalid token...
+</br> -> done (`tfe/workspace-notifications.tf`). 
 
 Optional: Make your IaC more robust
 ✅ Seperate your terraform into 2 workspaces - Network and Servers
@@ -39,14 +39,13 @@ Optional: Make your IaC more robust
 </br> -> done (tfe/workspace-triggers.tf)
 
 ✅ Configure state sharing with specific workspaces
-</br> -> not done. this will require me to break up the map including the inputs for the tfe_workspace part in `tfe/main.tf`. I need to do this but didn't have time.
+</br> -> done. 
 
 ---------------
 
 ## Summary of improvements to be done:
-* restructure the way workspaces are provisioned
-* find a better way to grant permissions to workspaces to provision AWS infrastructure 
-* move from global state sharing to specific state sharing.
+* restructure the way workspaces are provisioned, perhaps using a module, so things will be more concise.
+* find a better way to grant permissions to workspaces to provision AWS infrastructure. 
 * use remote_state_sharing data source and not the way i have it now.
 * fix the app configuration (nginx servers) to use a module from private registry or restrcuture the instance provisioining block.
  
