@@ -5,6 +5,7 @@ data "aws_availability_zones" "available" {
   }
 }
 
+
 module "vpc" {
   source               = "app.terraform.io/yoad-tfc-org/vpc/aws"
   version              = "0.0.1"
