@@ -8,7 +8,7 @@ module "web_instance" {
   # subnet_id           = data.aws_subnet.get_subnet_info
   # subnet_id           = data.aws_subnet.get_subnet_info.*.id
   # subnet_id           = data.tf_vpc_state.public_subnets.outputs.public_subnet_id
-  subnet_id             = data.terraform_remote_state.vpc.outputs.public_subnet_ids[0][count.index]
+  subnet_id             = data.terraform_remote_state.vpc.outputs.public_subnet_ids[count.index]
   userdata_path         = var.userdata_path
   volumes_type          = var.volume_type
   root_disk_size        = var.root_disk_size
@@ -23,7 +23,7 @@ module "web_instance" {
 ## create security group for web instances (public - open http port 80)
 resource "aws_security_group" "web_sg" {
   name   = "web-sg"
-  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id[0]
+  vpc_id = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_security_group_rule" "web_http_acess" {
