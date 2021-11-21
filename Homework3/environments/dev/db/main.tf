@@ -7,7 +7,7 @@ resource "aws_instance" "db_instance" {
   ami                         = data.aws_ami.ubuntu-18.id
   instance_type               = var.ec2_instance_type
   key_name                    = var.key_name
-  subnet_id                   = data.aws_subnets.get_subnets_info.ids[count.index]
+  subnet_id                   = data.terraform_remote_state.vpc.outputs.private_subnet_ids[count.index]
   associate_public_ip_address = false
   vpc_security_group_ids      = [aws_security_group.db_sg.id]
 
@@ -26,7 +26,7 @@ resource "aws_instance" "db_instance" {
 resource "aws_security_group" "db_sg" {
   name        = "db-sg"
   description = "Allow ports for db intances"
-  vpc_id      = data.aws_vpc.get_vpc_info.id
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 }
 
 resource "aws_security_group_rule" "db_ssh_acess" {

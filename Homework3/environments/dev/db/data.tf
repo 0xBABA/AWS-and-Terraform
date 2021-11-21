@@ -18,17 +18,3 @@ data "terraform_remote_state" "vpc" {
   }
 }
 
-
-data "aws_subnets" "get_subnets_info" {
-  filter {
-    name   = "tag:Name"
-    values = [format("%s-%s-*", var.global_name_prefix, var.private_subnet_prefix)]
-  }
-}
-
-data "aws_vpc" "get_vpc_info" {
-  filter {
-    name   = "tag:Name"
-    values = [format("%s-${var.vpc_name}", var.global_name_prefix)]
-  }
-}
