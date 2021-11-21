@@ -7,7 +7,7 @@ resource "aws_lb_target_group" "hw3_web_alb_tg" {
   name     = format("%s-web-alb-tg", var.global_name_prefix)
   port     = 80
   protocol = "HTTP"
-  vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id
+  vpc_id   = data.terraform_remote_state.vpc.outputs.vpc_id[0]
 
   health_check {
     enabled = true
@@ -58,7 +58,7 @@ resource "aws_lb" "hw3_web_alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.web_sg.id]
-  subnets            = data.terraform_remote_state.vpc.outputs.public_subnet_ids
+  subnets            = data.terraform_remote_state.vpc.outputs.public_subnet_ids[0]
 
   tags = {
     Name = format("%s-web_alb", var.global_name_prefix)
